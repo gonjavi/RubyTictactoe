@@ -31,26 +31,29 @@ class Game
             show_board
            # check_win
             turn
-           # end_game
+            change_player
 
 
         end
-        
+      end_game
     end 
-
-    def end_game
-        
+    
+    def end_game        
+        puts "The game has finished!!"
+        exit
+    end
+    
+    def abort_game
         x=gets.chomp
         if x== "q"
             print "press y to comfirm"
             x=gets.chomp
-            if x== "y"
-                 print "The game has finished!!"
-                @play_game=false
-            end
+            exit if x== "y"
+                 
+
         end
     end
-
+    
       def check_win 
         #checking each position in the array x inside winnig positions
         @win_positions.each do |x|
@@ -81,14 +84,17 @@ class Game
       def turn
         # @b recibe x o o y check board mira si no ha sido ocupada
         @b=gets.chomp.to_i
+        
         check_board
         put_on_board
-    
+        check_draw
       end
 
       def check_board
+         
          @b-=1
          while @board[@b]!="-"
+            
             print "the position has been elected, choose another one"
             @b=gets.chomp
             @b-=1
@@ -99,13 +105,28 @@ class Game
       def put_on_board
         if @player=="x"
             @board[@b]="x"
-        elsif player=="o"
+
+        elsif @player=="o"
             @board[@b]="o"
         end
       end
 
       def change_player
          @player== "x" ? @player="o" : @player="x"
+      end
+
+      def check_draw
+        z=0
+            @board.each do |x|
+                if x!="-"
+                    z+=1
+                end
+                if z==9
+                    puts "the game is draw"
+                    end_game
+                end
+
+            end
       end
 end
 
