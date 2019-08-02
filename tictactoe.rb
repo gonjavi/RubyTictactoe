@@ -18,10 +18,9 @@ class Game
         @b=0
     end
     def show_board(board = @board)
-        puts board[0..2].join(" ")
-        puts board[3..5].join(" ")
         puts board[6..8].join(" ")
-        
+        puts board[3..5].join(" ")        
+        puts board[0..2].join(" ")
     end
 
     def play
@@ -31,12 +30,11 @@ class Game
              puts "Tic Tac Toe"          
             show_board
             check_win
+            check_draw
             turn
             change_player
-
-
         end
-      end_game
+      
     end 
     
     def end_game        
@@ -44,18 +42,7 @@ class Game
         exit
     end
     
-    def abort_game
-        x=gets.chomp
-        if x== "q"
-            print "press y to comfirm"
-            x=gets.chomp
-            exit if x== "y"
-                 
-
-        end
-    end
-    
-      def check_win 
+    def check_win 
         @board_x=0 
         @board_o=0 
         #checking each position in the array x inside winnig positions
@@ -65,8 +52,7 @@ class Game
                         @board_o +=1
                         if  @board_o==3
                             puts "the winner is player o"
-                            puts  "Game ended!"
-                            exit
+                            end_game
                         end
 
                     elsif @board[y]=="x"
@@ -74,9 +60,7 @@ class Game
                         @board_x+=1
                         if  @board_x==3
                             puts "the winner is player x"
-                            puts  "G
-                            Game ended!"
-                            exit
+                        end_game
                         end
                     end
             end
@@ -86,27 +70,29 @@ class Game
             
         end
 
-      end
+    end
       
       # turno- poner x ó o
-      def turn
+    def turn
         # @b recibe x o o y check board mira si no ha sido ocupada
         
-            @b=gets.chomp.to_i
-             if  @b>=0 and @b <=9
-                 check_board 
+            @b=gets.chomp
+            if  @b =~ /\d/
+                check_board
+                 
              else
-                 turn
+                puts "Please input a numerical position (1-9)"
+                turn
              end
             
             put_on_board
       end
       def check_board
+            @b=@b.to_i
          @b-=1
-         if @board[@b] != "-"           
-            puts "the position has been elected, choose another one"
+         if @board[@b] != "-"          
+            puts "the number has been eelcted choose another number"
             turn
-            check_board
          end
       end
 
@@ -130,12 +116,12 @@ class Game
                     z+=1
                 end
                 if z==9
-                    puts "the game is draw"
+                    puts "the game is a draw"
                     end_game
                 end
 
             end
-      end
+    end
 end
 
 board = Game.new
