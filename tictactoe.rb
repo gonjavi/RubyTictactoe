@@ -27,9 +27,10 @@ class Game
     def play
         @play_game = true
         while @play_game
-            puts "press the letter (q) if you want to exit at any time"
+            puts
+             puts "Tic Tac Toe"          
             show_board
-           # check_win
+            check_win
             turn
             change_player
 
@@ -55,50 +56,57 @@ class Game
     end
     
       def check_win 
+        @board_x=0 
+        @board_o=0 
         #checking each position in the array x inside winnig positions
         @win_positions.each do |x|
             x.each do |y|
                     if @board[y]=="o"
-                        @board_x=0 
-                        board_o=0 
-                        board_o +=1
+                        @board_o +=1
                         if  @board_o==3
-                            print "the winner is player o"
+                            puts "the winner is player o"
+                            puts  "Game ended!"
+                            exit
                         end
 
                     elsif @board[y]=="x"
-                        @board_o=0    
+                          
                         @board_x+=1
                         if  @board_x==3
-                            print "the winner is player x"
+                            puts "the winner is player x"
+                            puts  "G
+                            Game ended!"
+                            exit
                         end
                     end
             end
-            
+            @board_x=0 
+            @board_o=0
                 
             
         end
 
       end
+      
       # turno- poner x ó o
       def turn
         # @b recibe x o o y check board mira si no ha sido ocupada
-        @b=gets.chomp.to_i
         
-        check_board
-        put_on_board
-        check_draw
-      end
-
-      def check_board
-         
-         @b-=1
-         while @board[@b]!="-"
+            @b=gets.chomp.to_i
+             if  @b>=0 and @b <=9
+                 check_board 
+             else
+                 turn
+             end
             
-            print "the position has been elected, choose another one"
-            @b=gets.chomp
-            @b-=1
-            @board[@b]="x"
+            put_on_board
+      end
+      def check_board
+         @b-=1
+         if @board[@b] != "-"           
+            puts "the position has been elected, choose another one"
+            turn
+            check_board
          end
       end
 
