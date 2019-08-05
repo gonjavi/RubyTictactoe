@@ -4,7 +4,6 @@ class Game
     def initialize
         #to intialize -start method and winning positions
         start
-       
         @win_positions =
       [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]]
     end
@@ -109,7 +108,7 @@ class Game
          @player== "x" ? @player="o" : @player="x"
       end
 
-      def check_draw
+    def check_draw
         z=0
             @board.each do |x|
                 if x!="-"
