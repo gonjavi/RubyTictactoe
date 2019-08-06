@@ -11,21 +11,22 @@ class Game
     def start
         #@turns_played = 0
          @player = "x"
-        @board = ["-", "-", "-", "-", "-", "-", "-", "-", "-"]
+         @board = ["-", "-", "-", "-", "-", "-", "-", "-", "-"]
         @board_o=0
         @board_x=0
         @b=0
     end
-    def show_board(board = @board)
-        puts board[6..8].join(" ")
-        puts board[3..5].join(" ")        
+    def show_board
+                      
         puts board[0..2].join(" ")
+        puts board[3..5].join(" ") 
+        puts board[6..8].join(" ")
     end
 
     def play
         @play_game = true
         while @play_game
-            puts
+            
              puts "Tic Tac Toe"          
             show_board
             check_win
@@ -42,19 +43,18 @@ class Game
     end
     
     def check_win 
-        @board_x=0 
-        @board_o=0 
+      
         #checking each position in the array x inside winnig positions
-        @win_positions.each do |x|
-            x.each do |y|
-                    if @board[y]=="o"
+        @win_positions.each do |row|
+            row.each do |cell|
+                    if @board[cell]=="o"
                         @board_o +=1
                         if  @board_o==3
                             puts "the winner is player o"
                             end_game
                         end
 
-                    elsif @board[y]=="x"
+                    elsif @board[cell]=="x"
                           
                         @board_x+=1
                         if  @board_x==3
