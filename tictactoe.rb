@@ -12,7 +12,7 @@ class Game
         #@turns_played = 0
          @player = "x"
         @board = ["-", "-", "-", "-", "-", "-", "-", "-", "-"]
-        @oard_o=0
+        @board_o=0
         @board_x=0
         @b=0
     end
