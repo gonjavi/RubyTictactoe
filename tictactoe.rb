@@ -18,9 +18,9 @@ class Game
     end
     def show_board
                       
-        puts board[0..2].join(" ")
-        puts board[3..5].join(" ") 
-        puts board[6..8].join(" ")
+        puts @board[0..2].join(" ")
+        puts @board[3..5].join(" ") 
+        puts @board[6..8].join(" ")
     end
 
     def play
