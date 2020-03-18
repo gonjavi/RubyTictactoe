@@ -13,7 +13,7 @@ This project is based on the Tic Tac Toe game, which is developed in ruby langua
 
 
 ### Prerequisites
-- npm 6.13.14
+- Npm 6.13.14
 - Ruby 2.6.3
 
 ### Setup
